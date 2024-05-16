@@ -125,22 +125,29 @@ def main() -> None:
         )
 
         print(
-            "The serializer that returns a dict:",
+            "The serializer that returns a dict, except (exclude=True) fields:",
             user.model_dump(),
             sep="\n",
             end="\n\n",
         )
 
         print(
-            "The serializer that returns a JSON string:",
+            "The serializer that returns a dictionary with JSON-compatible data:",
             user.model_dump(mode="json"),
             sep="\n",
             end="\n\n",
         )
 
         print(
-            "The serializer that returns a JSON string, excluding the name:",
+            "The serializer that returns a dictionary with JSON-compatible data, excluding the name:",
             user.model_dump(mode="json", exclude={"name"}),
+            sep="\n",
+            end="\n\n",
+        )
+
+        print(
+            "The serializer that returns a JSON string, excluding the name:",
+            user.model_dump_json(indent=2, exclude={"name"}),
             sep="\n",
             end="\n\n",
         )

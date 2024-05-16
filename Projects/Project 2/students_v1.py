@@ -1,6 +1,6 @@
 import os
-from pathlib import Path
 from datetime import date, timedelta
+from pathlib import Path
 from typing import Annotated
 from uuid import UUID
 
@@ -52,18 +52,26 @@ def main(file_path: Path) -> None:
     )
 
     print(
-        "The serializer that returns a JSON string:",
+        "The serializer that returns a dictionary with JSON-compatible data:",
         model.model_dump(mode="json"),
         sep="\n",
         end="\n\n",
     )
 
     print(
-        "The serializer that returns a JSON string, including the name and GPA:",
+        "The serializer that returns a dictionary with JSON-compatible data, including the name and GPA:",
         model.model_dump(mode="json", include={"name", "GPA"}),
         sep="\n",
         end="\n\n",
     )
+
+    print(
+        "The serializer that returns a JSON string, excluding the name:",
+        model.model_dump_json(indent=2, exclude={"name"}),
+        sep="\n",
+        end="\n\n",
+    )
+
 
 if __name__ == "__main__":
     BASE_DIR = Path(__file__).parent
