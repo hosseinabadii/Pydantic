@@ -6,7 +6,7 @@ from uuid import UUID
 
 from api import get_data
 from enums import Department
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from typing_extensions import Self
 
 os.system("clear")
@@ -30,10 +30,11 @@ class Student(BaseModel):
     fees_paid: bool
     modules: list[Modules] = []
 
-    class Config:
-        use_enum_values = True
-        title = "Students Model"
-        extra = "ignore"  # "forbid", "allow"
+    model_config = ConfigDict(
+        use_enum_values=True,
+        title="Students Model",
+        extra="ignore",  # "forbid", "allow"
+    )
 
     @field_validator("date_of_birth")
     @classmethod
